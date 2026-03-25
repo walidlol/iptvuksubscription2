@@ -1,26 +1,113 @@
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap");
 @import "tailwindcss";
 
+/* ─── Design Tokens (CLAUDE.md canonical variables) ─────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-deep:        #050508;
+  --bg-primary:     #0A0A10;
+  --bg-card:        #0E0E16;
+  --bg-card-hover:  #13131D;
+  --border:         #1A1A2E;
+  --border-hover:   #252540;
+  --accent:         #00E87B;
+  --accent-dim:     rgba(0, 232, 123, 0.10);
+  --accent-glow:    rgba(0, 232, 123, 0.25);
+  --cyan:           #00B4D8;
+  --gold:           #FFB800;
+  --text-primary:   #EEEEF5;
+  --text-secondary: #7B7B9A;
+  --text-tertiary:  #4A4A65;
+  --danger:         #FF4757;
 }
 
+/* ─── Tailwind v4 Theme (utility class generation) ───────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Backgrounds */
+  --color-deep:        var(--bg-deep);
+  --color-surface:     var(--bg-primary);
+  --color-card:        var(--bg-card);
+  --color-card-hover:  var(--bg-card-hover);
+
+  /* Borders */
+  --color-line:        var(--border);
+  --color-line-hover:  var(--border-hover);
+
+  /* Accent + Brand */
+  --color-accent:      var(--accent);
+  --color-accent-dim:  var(--accent-dim);
+  --color-accent-glow: var(--accent-glow);
+  --color-cyan:        var(--cyan);
+  --color-gold:        var(--gold);
+  --color-danger:      var(--danger);
+
+  /* Text */
+  --color-body:        var(--text-primary);
+  --color-muted:       var(--text-secondary);
+  --color-subtle:      var(--text-tertiary);
+
+  /* Typography */
+  --font-display: "Clash Display", system-ui, sans-serif;
+  --font-body:    var(--font-body), system-ui, sans-serif;
+
+  /* Easing — use in Framer Motion transition: { ease: [...] } */
+  --ease-spring:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ─── Scrollbar hide utility ─────────────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
+
+/* ─── Typography helpers ─────────────────────────────────────────────────── */
+.font-display {
+  font-family: "Clash Display", system-ui, sans-serif;
+}
+
+.label-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--font-body), system-ui, sans-serif;
 }
