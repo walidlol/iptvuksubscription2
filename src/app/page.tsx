@@ -4,7 +4,7 @@ import StatsBar from "@/components/home/StatsBar";
 import WhyUsSection from "@/components/home/WhyUsSection";
 import ContentShowcase from "@/components/home/ContentShowcase";
 import SportHighlights from "@/components/home/SportHighlights";
-import PricingSection from "@/components/home/PricingSection";
+import LuxuryPricingSection from "@/components/home/LuxuryPricingSection";
 import DeviceSection from "@/components/home/DeviceSection";
 import FAQ from "@/components/home/FAQ";
 import TestimonialMarquee from "@/components/home/TestimonialMarquee";
@@ -69,7 +69,7 @@ export default function HomePage(): React.ReactElement {
       <WhyUsSection />
       <ContentShowcase />
       <SportHighlights />
-      <PricingSection />
+      <LuxuryPricingSection />
       <DeviceSection />
       <TestimonialMarquee />
       <FAQ />

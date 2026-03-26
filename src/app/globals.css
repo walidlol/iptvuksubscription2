@@ -226,7 +226,7 @@ body {
   opacity: 0.5;
 }
 
-/* ─── Page transition ────────────────────────────────────────────────────── */
+/* ─── Page transition ─────────────────────���──────────────────────────────── */
 .page-enter {
   opacity: 0;
   transform: translateY(8px);
@@ -236,6 +236,33 @@ body {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Glowing badge animation ────────────────────────────────────────────── */
+@keyframes pulse-glow-teal {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(13,148,136,0.6), 0 0 40px rgba(13,148,136,0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(13,148,136,0.8), 0 0 60px rgba(13,148,136,0.4);
+  }
+}
+
+@keyframes pulse-glow-gold {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(245,158,11,0.6), 0 0 40px rgba(245,158,11,0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(245,158,11,0.8), 0 0 60px rgba(245,158,11,0.4);
+  }
+}
+
+.animate-glow-teal {
+  animation: pulse-glow-teal 2s ease-in-out infinite;
+}
+
+.animate-glow-gold {
+  animation: pulse-glow-gold 2s ease-in-out infinite;
 }
 
 /* ─── Anime.js targets ───────────────────────────────────────────────────── */
