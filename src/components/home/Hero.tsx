@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
@@ -298,87 +299,234 @@ export default function Hero(): React.ReactElement {
 
       {/* ── Content ───────────────────────────────────────────────────── */}
       <motion.div
-        className="relative z-10 mx-auto max-w-[1200px] px-6 py-32 flex flex-col items-center text-center"
+        className="relative z-10 w-full mx-auto max-w-[1200px] px-6 py-28 lg:py-32"
         style={{ y: contentY }}
       >
-        {/* Live counter */}
-        <LiveCounter />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* H1 — split into letters for anime.js */}
-        <h1
-          ref={headlineRef}
-          className="font-display font-bold tracking-[-0.04em] leading-[1.05] mb-6"
-          style={{ fontSize: "clamp(2.8rem, 7.5vw, 5.5rem)" }}
-        >
-          <SplitText text="Premium " />{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{ backgroundImage: "linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%)" }}
-          >
-            <SplitText text="IPTV UK" />
-          </span>
-          <br />
-          <SplitText text="Subscription" />
-        </h1>
+          {/* Left: text */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+            {/* Live counter */}
+            <LiveCounter />
 
-        {/* Subtitle */}
-        <p
-          ref={subtitleRef}
-          className="text-base sm:text-lg text-muted leading-relaxed max-w-[640px] mb-10"
-          style={{ opacity: prefersReduced ? 1 : 0 }}
-        >
-          The most reliable <strong className="text-body font-medium">IPTV UK subscription</strong>{" "}
-          on the market. Stream{" "}
-          <strong className="text-body font-medium">35,000+ live channels</strong>,{" "}
-          <strong className="text-body font-medium">100,000+ on-demand</strong> titles, and
-          all the Premier League action in{" "}
-          <strong className="text-body font-medium">4K Ultra HD</strong> — with
-          anti-freeze buffer technology keeping every stream silky smooth.
-        </p>
+            {/* H1 */}
+            <h1
+              ref={headlineRef}
+              className="font-display font-bold tracking-[-0.04em] leading-[1.05] mb-6"
+              style={{ fontSize: "clamp(2.6rem, 6.5vw, 5rem)" }}
+            >
+              <SplitText text="Premium " />
+              <span
+                className="bg-clip-text text-transparent"
+                style={{ backgroundImage: "linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%)" }}
+              >
+                <SplitText text="IPTV UK" />
+              </span>
+              <br />
+              <SplitText text="Subscription" />
+            </h1>
 
-        {/* CTA buttons */}
-        <div
-          ref={ctaRef}
-          className="flex flex-col sm:flex-row items-center gap-3 mb-14"
-          style={{ opacity: prefersReduced ? 1 : 0 }}
-        >
-          <Link
-            href="/pricing/"
-            className={cn(
-              "magnetic inline-flex items-center justify-center h-12 px-8 rounded-[12px] text-sm font-semibold",
-              "bg-accent text-white",
-              "shadow-[0_0_24px_var(--accent-glow)]",
-              "hover:bg-accent-hover hover:shadow-[0_0_40px_var(--accent-glow)]",
-              "transition-all duration-300"
-            )}
-          >
-            Start Free Trial →
-          </Link>
-          <Link
-            href="/iptv-uk-channels/"
-            className={cn(
-              "magnetic inline-flex items-center justify-center h-12 px-8 rounded-[12px] text-sm font-semibold",
-              "bg-transparent border border-line text-body",
-              "hover:border-accent/50 hover:text-accent hover:bg-accent-dim",
-              "transition-all duration-300"
-            )}
-          >
-            View All Channels
-          </Link>
-        </div>
+            {/* Subtitle */}
+            <p
+              ref={subtitleRef}
+              className="text-base sm:text-lg text-muted leading-relaxed max-w-[560px] mb-10"
+              style={{ opacity: prefersReduced ? 1 : 0 }}
+            >
+              The most reliable <strong className="text-body font-medium">IPTV UK subscription</strong>{" "}
+              on the market. Stream{" "}
+              <strong className="text-body font-medium">35,000+ live channels</strong>,{" "}
+              <strong className="text-body font-medium">100,000+ on-demand</strong> titles, and
+              all the Premier League action in{" "}
+              <strong className="text-body font-medium">4K Ultra HD</strong>.
+            </p>
 
-        {/* Trust badges */}
-        <div
-          ref={badgesRef}
-          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
-          style={{ opacity: prefersReduced ? 1 : 0 }}
-        >
-          {TRUST_BADGES.map((badge) => (
-            <div key={badge.label} className="flex items-center gap-2">
-              <span className="text-accent text-xs font-bold">{badge.icon}</span>
-              <span className="text-xs text-subtle font-medium">{badge.label}</span>
+            {/* CTA buttons */}
+            <div
+              ref={ctaRef}
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-3 mb-12"
+              style={{ opacity: prefersReduced ? 1 : 0 }}
+            >
+              <Link
+                href="/pricing/"
+                className={cn(
+                  "magnetic inline-flex items-center justify-center h-12 px-8 rounded-[12px] text-sm font-semibold",
+                  "bg-accent text-white",
+                  "shadow-[0_0_24px_var(--accent-glow)]",
+                  "hover:bg-accent-hover hover:shadow-[0_0_40px_var(--accent-glow)]",
+                  "transition-all duration-300"
+                )}
+              >
+                Start Free Trial →
+              </Link>
+              <Link
+                href="/iptv-uk-channels/"
+                className={cn(
+                  "magnetic inline-flex items-center justify-center h-12 px-8 rounded-[12px] text-sm font-semibold",
+                  "bg-transparent border border-line text-body",
+                  "hover:border-accent/50 hover:text-accent hover:bg-accent-dim",
+                  "transition-all duration-300"
+                )}
+              >
+                View All Channels
+              </Link>
             </div>
-          ))}
+
+            {/* Trust badges */}
+            <div
+              ref={badgesRef}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3"
+              style={{ opacity: prefersReduced ? 1 : 0 }}
+            >
+              {TRUST_BADGES.map((badge) => (
+                <div key={badge.label} className="flex items-center gap-2">
+                  <span className="text-accent text-xs font-bold">{badge.icon}</span>
+                  <span className="text-xs text-subtle font-medium">{badge.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: movie poster stack */}
+          <div className="hidden lg:flex items-center justify-center relative h-[520px]" aria-hidden="true">
+            {/* Background glow */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none"
+              style={{
+                background: "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(255,45,85,0.12) 0%, transparent 70%)",
+                filter: "blur(40px)",
+              }}
+            />
+
+            {/* Card 1 — back-left (Stranger Things) */}
+            <motion.div
+              className="absolute left-0 top-[50px] w-[180px] h-[270px] rounded-[16px] overflow-hidden border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.6)]"
+              style={{ rotate: -8, zIndex: 1 }}
+              initial={{ opacity: 0, x: -40, rotate: -14 }}
+              animate={{ opacity: 0.75, x: 0, rotate: -8 }}
+              transition={{ duration: 1, delay: 0.8, ease: [0.16,1,0.3,1] }}
+            >
+              <Image
+                src="/images/content/tvshows/iptv-uk-subscription-Stranger-Things-5.jpg"
+                alt="Stranger Things 5 on IPTV UK"
+                fill
+                sizes="180px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-[10px] font-bold text-white/80 leading-tight">Stranger Things 5</p>
+                <p className="text-[9px] text-white/50">TV Series</p>
+              </div>
+            </motion.div>
+
+            {/* Card 2 — back-right (Odyssey) */}
+            <motion.div
+              className="absolute right-0 top-[30px] w-[180px] h-[270px] rounded-[16px] overflow-hidden border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.6)]"
+              style={{ rotate: 9, zIndex: 1 }}
+              initial={{ opacity: 0, x: 40, rotate: 16 }}
+              animate={{ opacity: 0.75, x: 0, rotate: 9 }}
+              transition={{ duration: 1, delay: 1.0, ease: [0.16,1,0.3,1] }}
+            >
+              <Image
+                src="/images/content/movies/the-odyssey-movie-2026-streaming-availability.jpg"
+                alt="The Odyssey 2026 on IPTV UK"
+                fill
+                sizes="180px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-[10px] font-bold text-white/80 leading-tight">The Odyssey</p>
+                <p className="text-[9px] text-white/50">2026 · Film</p>
+              </div>
+            </motion.div>
+
+            {/* Card 3 — front-center (Avengers) — largest */}
+            <motion.div
+              className="absolute left-1/2 -translate-x-1/2 top-[10px] w-[220px] h-[330px] rounded-[20px] overflow-hidden border border-accent/30 shadow-[0_0_60px_rgba(255,45,85,0.25),0_32px_80px_rgba(0,0,0,0.7)]"
+              style={{ zIndex: 3 }}
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1.1, delay: 0.5, ease: [0.16,1,0.3,1] }}
+            >
+              <Image
+                src="/images/content/movies/avengers-doomsday-official-release-date-uk.jpg"
+                alt="Avengers Doomsday on IPTV UK"
+                fill
+                sizes="220px"
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+              {/* LIVE NOW badge */}
+              <div className="absolute top-3 left-3">
+                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider bg-accent/90 text-white backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  STREAMING NOW
+                </span>
+              </div>
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-sm font-bold text-white leading-tight mb-1">Avengers: Doomsday</p>
+                <p className="text-[10px] text-white/60">Marvel · 2026 · 4K UHD</p>
+              </div>
+            </motion.div>
+
+            {/* Card 4 — bottom-left (Spider-Noir) */}
+            <motion.div
+              className="absolute left-[60px] bottom-0 w-[150px] h-[220px] rounded-[14px] overflow-hidden border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
+              style={{ rotate: -5, zIndex: 2 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 0.85, y: 0 }}
+              transition={{ duration: 0.9, delay: 1.2, ease: [0.16,1,0.3,1] }}
+            >
+              <Image
+                src="/images/content/tvshows/spider-noir-tv-show-streaming-guide-reddit.jpg"
+                alt="Spider-Noir on IPTV UK"
+                fill
+                sizes="150px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-[10px] font-bold text-white/80 leading-tight">Spider-Noir</p>
+                <p className="text-[9px] text-white/50">Marvel Series</p>
+              </div>
+            </motion.div>
+
+            {/* Card 5 — bottom-right (Succession) */}
+            <motion.div
+              className="absolute right-[50px] bottom-[10px] w-[150px] h-[220px] rounded-[14px] overflow-hidden border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
+              style={{ rotate: 6, zIndex: 2 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 0.85, y: 0 }}
+              transition={{ duration: 0.9, delay: 1.4, ease: [0.16,1,0.3,1] }}
+            >
+              <Image
+                src="/images/content/tvshows/iptv-uk-subscription-succession-tv-show-2026-watch-online.jpg"
+                alt="Succession on IPTV UK"
+                fill
+                sizes="150px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-[10px] font-bold text-white/80 leading-tight">Succession</p>
+                <p className="text-[9px] text-white/50">HBO Drama</p>
+              </div>
+            </motion.div>
+
+            {/* Floating stats pill */}
+            <motion.div
+              className="absolute top-[5px] right-[100px] z-10 px-3 py-1.5 rounded-full border border-line bg-card/80 backdrop-blur-md flex items-center gap-2"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1.6 }}
+            >
+              <span className="text-accent text-[10px] font-bold">4K UHD</span>
+              <span className="text-subtle text-[10px]">·</span>
+              <span className="text-subtle text-[10px]">100,000+ titles</span>
+            </motion.div>
+          </div>
         </div>
       </motion.div>
 

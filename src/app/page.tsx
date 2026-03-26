@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
 import StatsBar from "@/components/home/StatsBar";
+import WhyUsSection from "@/components/home/WhyUsSection";
 import ContentShowcase from "@/components/home/ContentShowcase";
+import SportHighlights from "@/components/home/SportHighlights";
 import PricingSection from "@/components/home/PricingSection";
 import DeviceSection from "@/components/home/DeviceSection";
 import FAQ from "@/components/home/FAQ";
@@ -64,7 +66,9 @@ export default function HomePage(): React.ReactElement {
       />
       <Hero />
       <StatsBar />
+      <WhyUsSection />
       <ContentShowcase />
+      <SportHighlights />
       <PricingSection />
       <DeviceSection />
       <TestimonialMarquee />
