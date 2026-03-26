@@ -156,6 +156,128 @@ export default function SetupGuidePage(): React.ReactElement {
         </div>
       </section>
 
+      {/* ── Internet speed & network guide ───────────────────────────────── */}
+      <section className="py-20 bg-deep">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">Network Requirements</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}>
+            Internet Speed &amp; Network Setup
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[720px] mb-10">
+            The single biggest factor in <strong className="text-body font-medium">IPTV UK subscription</strong> performance is your network connection. Unlike Netflix, which buffers content ahead of time, live IPTV streams data continuously — so a stable, consistent connection matters more than raw peak speed.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+            {[
+              { quality: "SD (480p)", speed: "5 Mbps", ideal: "International channels, older content", note: "Minimum viable. Not recommended for primary viewing." },
+              { quality: "HD (1080p)", speed: "10–20 Mbps", ideal: "UK terrestrials, sport on Starter plan", note: "Works comfortably on standard UK broadband packages." },
+              { quality: "Full HD Sport", speed: "20 Mbps stable", ideal: "Premier League, Champions League live", note: "Speed must be consistent — not just peak. Test with Speedtest.net." },
+              { quality: "4K Ultra HD", speed: "50 Mbps+", ideal: "Sky Sports F1 4K, Sky Cinema Premiere 4K", note: "Wired ethernet strongly recommended over Wi-Fi for 4K." },
+            ].map((row) => (
+              <div key={row.quality} className="p-5 rounded-[14px] bg-card border border-line">
+                <p className="font-display font-bold text-accent text-2xl leading-none tabular-nums mb-1">{row.speed}</p>
+                <p className="font-body font-semibold text-body text-sm mb-1">{row.quality}</p>
+                <p className="text-xs text-muted mb-2 leading-relaxed">{row.ideal}</p>
+                <p className="text-[11px] text-subtle leading-relaxed">{row.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="p-6 rounded-[16px] bg-card border border-line">
+              <h3 className="font-display font-semibold text-body text-base mb-3">Wired Ethernet vs Wi-Fi</h3>
+              <p className="text-sm text-muted leading-relaxed mb-3">
+                Wi-Fi is convenient but introduces packet loss, latency spikes, and interference — all of which cause IPTV streams to stutter or freeze even on fast connections. For HD and 4K sport especially, a wired ethernet cable from your router to your streaming device eliminates the most common cause of buffering.
+              </p>
+              <p className="text-sm text-muted leading-relaxed mb-3">
+                If you cannot run an ethernet cable (e.g., to a Smart TV mounted on a wall), a Powerline adapter kit is the next best option — it runs the network signal through your home&apos;s electrical wiring and is far more stable than Wi-Fi. TP-Link AV600 and similar kits cost under £25 and dramatically improve stream stability.
+              </p>
+              <p className="text-sm text-muted leading-relaxed">
+                If Wi-Fi is your only option, use the 5 GHz band (not 2.4 GHz), position your router within line of sight of your streaming device, and keep other bandwidth-heavy activities to a minimum during live sport.
+              </p>
+            </div>
+            <div className="p-6 rounded-[16px] bg-card border border-line">
+              <h3 className="font-display font-semibold text-body text-base mb-3">ISP Throttling &amp; VPN</h3>
+              <p className="text-sm text-muted leading-relaxed mb-3">
+                Some UK internet service providers throttle streaming traffic during peak hours — typically 6–10pm on evenings. If your stream quality degrades at predictable times despite having a fast connection, ISP throttling may be the cause.
+              </p>
+              <p className="text-sm text-muted leading-relaxed mb-3">
+                A VPN (Virtual Private Network) encrypts your traffic, preventing your ISP from identifying and throttling IPTV streams. Connect to a UK-based VPN server for the lowest latency. Our service is fully compatible with NordVPN, ExpressVPN, and Surfshark — all three have been tested with our infrastructure.
+              </p>
+              <p className="text-sm text-muted leading-relaxed">
+                If you are on an older BT or TalkTalk package, try running a speed test at iptvuksubscription.uk/speedtest to confirm your actual available bandwidth during evening hours specifically.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Getting the best experience ──────────────────────────────────── */}
+      <section className="py-20 bg-surface">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">Best Practices</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}>
+            Getting the Best Experience
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[640px] mb-10">
+            Most issues with IPTV streaming are solved by the same handful of settings. Here are the optimisations our support team recommends to every new subscriber.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+            {[
+              {
+                title: "Set Your Buffer Size",
+                desc: "In TiviMate, go to Settings → Player → Buffer size and increase it to 5–10 seconds. A larger buffer allows the app to pre-load more content, absorbing brief network hiccups without visual interruption. This is especially useful during live football kick-offs when server load spikes.",
+              },
+              {
+                title: "Enable Hardware Decoding",
+                desc: "In IPTV Smarters and TiviMate, enabling hardware decoding offloads video processing from your device's CPU to its GPU or dedicated video chip. This reduces heat, extends battery life on mobile, and eliminates frame drops on 4K streams — especially on Fire Stick 4K and Android boxes.",
+              },
+              {
+                title: "Use the Correct Stream Format",
+                desc: "Our playlist includes both M3U (for most apps) and Xtream Codes API (for TiviMate and IPTV Smarters). Xtream Codes provides better EPG integration, faster channel switching, and catch-up access. If you were given both formats in your welcome email, prefer Xtream Codes over plain M3U.",
+              },
+              {
+                title: "Update Your EPG Daily",
+                desc: "Set your EPG to auto-refresh in your player app settings. TiviMate should be set to refresh at midnight or 3am — this ensures your programme guide is always accurate. Stale EPG data makes the guide look empty or incorrect, which is a common source of confusion for new subscribers.",
+              },
+              {
+                title: "Keep Your App Updated",
+                desc: "IPTV player apps receive regular updates that fix playback bugs and add support for new stream formats. Enable auto-updates in your device's app store. If a channel suddenly stops working, an app update often resolves it without any other intervention.",
+              },
+              {
+                title: "Restart Your Device Monthly",
+                desc: "Long-running streaming devices — especially Amazon Fire Stick and budget Android boxes — accumulate cached data that slows performance over time. A full restart (not just app close) monthly keeps your device running at its best. Some customer issues that seem stream-related are actually caused by a device that has not been restarted in weeks.",
+              },
+            ].map((tip) => (
+              <div key={tip.title} className="p-5 rounded-[14px] bg-card border border-line hover:border-accent/25 transition-colors">
+                <h3 className="font-display font-semibold text-body text-sm mb-2">{tip.title}</h3>
+                <p className="text-xs text-muted leading-relaxed">{tip.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-6 rounded-[16px] bg-card border border-accent/20 border-l-2 border-l-accent">
+            <h3 className="font-display font-semibold text-body text-base mb-2">Recommended Hardware for 4K Streaming</h3>
+            <p className="text-sm text-muted leading-relaxed mb-4">
+              While our service works on any compatible device, the best 4K experience comes from devices with dedicated HEVC (H.265) hardware decoders. The following are tested and recommended for 4K streams on our service:
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {[
+                "Amazon Fire Stick 4K Max (2023) — Best overall for UK households",
+                "NVIDIA Shield TV Pro — Best Android TV box, excellent for heavy users",
+                "Apple TV 4K (3rd gen) — Best for iOS households, AirPlay compatible",
+                "Chromecast with Google TV 4K — Simple, reliable, Google ecosystem",
+                "Formuler Z11 Pro Max — Best dedicated Android IPTV box",
+                "MAG 524w3 — Best for MAG box users, hardware-decoded 4K",
+              ].map((device) => (
+                <li key={device} className="text-xs text-muted flex items-start gap-2">
+                  <span className="shrink-0 text-accent mt-0.5">✓</span>{device}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* ── Internal links ───────────────────────────────────────────────── */}
       <div className="py-10 bg-deep border-t border-line">
         <div className="mx-auto max-w-[1200px] px-6 flex flex-wrap gap-3 justify-center">

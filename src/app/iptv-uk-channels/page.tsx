@@ -123,6 +123,122 @@ export default function ChannelsPage(): React.ReactElement {
         </div>
       </section>
 
+      {/* ── Sports deep dive ─────────────────────────────────────────────── */}
+      <section className="py-20 bg-surface">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">Sports Channels</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}>
+            The Complete UK Sports Package
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[720px] mb-10">
+            Sports is where cheap IPTV services fall apart — and where our <strong className="text-body font-medium">IPTV UK subscription</strong> proves its engineering. Our sports package covers every major competition broadcast in the UK, streamed to the same quality as the original Sky Sports or TNT Sports feed. No compromises, no blackouts.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div>
+              <h3 className="font-display font-semibold text-body text-lg mb-4">Football — Premier League & Beyond</h3>
+              <p className="text-sm text-muted leading-relaxed mb-4">
+                Our <strong className="text-body font-medium">IPTV UK subscription</strong> includes every Sky Sports Premier League broadcast, every TNT Sports Premier League match, and every Eurosport game in a single subscription. That means every televised match from August to May — no blackouts, no region locking, no paying per-game for PPV.
+              </p>
+              <p className="text-sm text-muted leading-relaxed mb-4">
+                Beyond the Premier League, our football coverage extends to the UEFA Champions League (all Tuesday and Wednesday matches), UEFA Europa League, the Emirates FA Cup across all rounds, the Carabao Cup, the EFL Championship, Scottish Premiership, and international tournament coverage including the Euros and World Cup qualifiers.
+              </p>
+              <p className="text-sm text-muted leading-relaxed">
+                For fans of European club football, our international sports tier includes La Liga matches on Premier Sports, Serie A, Bundesliga, and Ligue 1 feeds — covering every major European league in one subscription rather than requiring separate broadcaster apps.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4">
+              {[
+                { competition: "Premier League", broadcaster: "Sky Sports PL + TNT Sports", detail: "Every televised match, all 38 gameweeks. 4K on Silver/Golden." },
+                { competition: "UEFA Champions League", broadcaster: "TNT Sports 1–4", detail: "All group stage and knockout matches from group stage to final." },
+                { competition: "FA Cup", broadcaster: "BBC & ITV HD", detail: "Every round including replays, semi-finals and Wembley final." },
+                { competition: "Formula 1", broadcaster: "Sky Sports F1 (4K)", detail: "Every practice, qualifying, and race. Driver analysis feeds included." },
+                { competition: "Boxing & UFC", broadcaster: "TNT Sports + Sky Sports Box Office", detail: "All major PPV events included on Silver and Golden plans." },
+                { competition: "Cricket, Golf, Rugby", broadcaster: "Sky Sports Cricket/Golf/Rugby", detail: "Full Ashes, The Open, Premiership Rugby and Six Nations coverage." },
+              ].map((row) => (
+                <div key={row.competition} className="flex gap-4 p-4 rounded-[12px] bg-card border border-line">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-body font-semibold text-body text-sm">{row.competition}</p>
+                    <p className="text-xs text-accent mb-1">{row.broadcaster}</p>
+                    <p className="text-xs text-muted leading-relaxed">{row.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Entertainment & Movies ───────────────────────────────────────── */}
+      <section className="py-20 bg-deep">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">Entertainment & Movies</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}>
+            Entertainment, Cinema & On-Demand
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[720px] mb-10">
+            Beyond sport, our channel library covers the full spectrum of British television — every terrestrial channel in HD, all Sky entertainment channels, and a 100,000+ title on-demand movie and TV library. Whether you are following a long-running drama series, catching up on a documentary, or browsing for films on a Friday evening, everything is in the same subscription.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            <div className="p-6 rounded-[16px] bg-card border border-line">
+              <h3 className="font-display font-semibold text-body text-base mb-3">UK Terrestrial Channels in HD</h3>
+              <p className="text-sm text-muted leading-relaxed mb-3">
+                All five main UK terrestrials are included in high definition — BBC One, BBC Two, ITV, Channel 4, and Channel 5 — along with their sister channels: BBC Three, BBC Four, ITV2, ITV3, ITV4, ITVBe, E4, More4, 5Star, and 5USA. You also get ITVX integration through IPTV Smarters catch-up mode on Silver and Golden plans.
+              </p>
+              <p className="text-sm text-muted leading-relaxed">
+                Live BBC News 24/7 and Sky News are included. For news enthusiasts, the package extends to GB News, TalkTV, Bloomberg TV, CNBC Europe, Euronews, CNN International, and Al Jazeera English — comprehensive UK and international coverage from a single subscription.
+              </p>
+            </div>
+            <div className="p-6 rounded-[16px] bg-card border border-line">
+              <h3 className="font-display font-semibold text-body text-base mb-3">Sky Cinema — Full Package</h3>
+              <p className="text-sm text-muted leading-relaxed mb-3">
+                The Sky Cinema package includes all eight dedicated channels: Sky Cinema Premiere, Sky Cinema Select, Sky Cinema Hits, Sky Cinema Action, Sky Cinema Comedy, Sky Cinema Family, Sky Cinema Thriller, and Sky Cinema Drama. Sky Cinema Premiere is available in 4K on Silver and Golden plans — the same quality as a Sky Cinema subscription costing over £20 a month on its own.
+              </p>
+              <p className="text-sm text-muted leading-relaxed">
+                The VOD library supplements live cinema channels with 100,000+ on-demand titles spanning every genre and era. Films are typically available in the same definition as their live channel counterparts, with full HD for most titles and 4K for selected new releases.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── International channels ───────────────────────────────────────── */}
+      <section className="py-20 bg-surface">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">International Channels</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}>
+            Channels from 150+ Countries
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[720px] mb-10">
+            The 30,000+ international channels in our library are sourced directly from regional broadcast feeds — not re-encoded third-party streams — giving you authentic broadcast quality for your home country&apos;s television regardless of where in the UK you live. The international tier is included in every plan at no additional cost.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+            {[
+              { region: "South Asian", channels: "200+ channels", examples: "Zee TV, Star Plus, Colors, Sony Entertainment, Star Gold, &TV, SAB TV, Star Vijay, Sun TV, Asianet, Jaya TV", note: "Hindi, Gujarati, Tamil, Telugu, Malayalam, Bengali language packages available." },
+              { region: "Arabic", channels: "180+ channels", examples: "MBC1, MBC2, MBC Drama, Al Arabiya, Al Jazeera Arabic, beIN Sports Arabic, MBC Action, Rotana Cinema, Nile TV", note: "Comprehensive Arabic-language news, drama, and sport across the region." },
+              { region: "French", channels: "60+ channels", examples: "TF1, France 2, France 3, M6, Canal+, TV5Monde, BFM TV, LCI, beIN Sports France, France 24", note: "Full French mainland TV including premium Canal+ feeds." },
+              { region: "German", channels: "50+ channels", examples: "ARD, ZDF, RTL, SAT.1, Pro7, Kabel Eins, VOX, n-tv, Sport1, Sky Sport Bundesliga Germany", note: "All major German free-to-air and premium sports channels." },
+              { region: "Italian", channels: "40+ channels", examples: "Rai Uno, Rai Due, Rai Tre, Mediaset (Canale 5, Italia 1, Rete 4), La7, Sky TG24 Italy, DAZN Italy", note: "Full Italian terrestrials plus Serie A coverage." },
+              { region: "Spanish & Latin", channels: "120+ channels", examples: "Antena 3, Cuatro, La Sexta, TVE1, TVE2, Telecinco, Canal Sur, Telemundo, Univision, TV Azteca", note: "Spain, Mexico, Colombia, Argentina and other Latin American feeds." },
+            ].map((region) => (
+              <div key={region.region} className="p-6 rounded-[16px] bg-card border border-line hover:border-accent/25 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-display font-semibold text-body text-sm">{region.region}</h3>
+                  <span className="text-xs font-body font-bold text-accent tabular-nums">{region.channels}</span>
+                </div>
+                <p className="text-xs text-muted leading-relaxed mb-2">{region.examples}</p>
+                <p className="text-[11px] text-subtle leading-relaxed">{region.note}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-muted leading-relaxed max-w-[680px]">
+            Additional regions include Turkish, Polish, Romanian, Portuguese (Brazil and Portugal), Dutch, Greek, Scandinavian, Eastern European, African, American (US), Canadian, and Australian channel packages. If you cannot find your specific country or channel on our{" "}
+            <Link href="/contact/" className="text-accent hover:text-body transition-colors">contact page</Link>, our team can confirm availability within hours.
+          </p>
+        </div>
+      </section>
+
       {/* ── Frequently asked channel questions ──────────────────────────── */}
       <section className="py-20 bg-surface">
         <div className="mx-auto max-w-[860px] px-6">

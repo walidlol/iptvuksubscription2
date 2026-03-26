@@ -213,6 +213,124 @@ export default function AboutPage(): React.ReactElement {
         </div>
       </section>
 
+      {/* ── Infrastructure ───────────────────────────────────────────────── */}
+      <section className="py-20 bg-deep">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">Infrastructure</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}>
+            How We Keep 48,000 Streams Stable
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[720px] mb-10">
+            Running a reliable IPTV service for tens of thousands of UK households requires a different kind of infrastructure than a simple streaming platform. Here is a transparent look at how we do it.
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            <div className="flex flex-col gap-5">
+              <div className="p-6 rounded-[16px] bg-card/60 border border-line">
+                <h3 className="font-display font-semibold text-body text-base mb-3">Server Architecture</h3>
+                <p className="text-sm text-muted leading-relaxed mb-3">
+                  Our streaming infrastructure runs across multiple UK-based data centres in London, Manchester, and Edinburgh, with additional edge nodes in Dublin and Amsterdam for low-latency routing across the British Isles. Every channel feed is distributed across these nodes via an internal CDN (Content Delivery Network) that routes each subscriber&apos;s connection to the lowest-latency available server.
+                </p>
+                <p className="text-sm text-muted leading-relaxed">
+                  This architecture means that a network event affecting one data centre does not impact subscribers served by other nodes. During the 2025 Premier League season opener — our highest simultaneous stream event of the year — we handled over 12,000 concurrent streams without a single reported outage.
+                </p>
+              </div>
+              <div className="p-6 rounded-[16px] bg-card/60 border border-line">
+                <h3 className="font-display font-semibold text-body text-base mb-3">Channel Sourcing & Quality Control</h3>
+                <p className="text-sm text-muted leading-relaxed mb-3">
+                  International channels are sourced directly from satellite and terrestrial broadcast feeds where possible — not from third-party IPTV resellers. Direct sourcing means the channel quality you receive is determined by the original broadcaster, not by intermediate encoding steps. This is why our international package delivers authentic local-language broadcast quality rather than degraded re-encodes.
+                </p>
+                <p className="text-sm text-muted leading-relaxed">
+                  Our quality control team performs automated stream monitoring on all 35,000+ channels every 15 minutes, flagging drops in bitrate, audio sync issues, or connection failures for immediate technical review. Most channel issues are detected and resolved before a single subscriber experiences them.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-5">
+              <div className="p-6 rounded-[16px] bg-card/60 border border-line">
+                <h3 className="font-display font-semibold text-body text-base mb-3">Why 99.9% Uptime Is Actually Achievable</h3>
+                <p className="text-sm text-muted leading-relaxed mb-3">
+                  Many IPTV providers advertise high uptime figures that are impossible to verify. Our 99.9% SLA is calculated across the entire channel library on a monthly basis and monitored by a third-party uptime service. 99.9% uptime allows for approximately 43 minutes of downtime per month across all channels combined — in practice, the most commonly disrupted channels are niche international feeds, while UK sports and entertainment channels consistently exceed this SLA.
+                </p>
+                <p className="text-sm text-muted leading-relaxed">
+                  To achieve this figure, every major channel runs on at least two independent source feeds with automatic failover. If our primary stream for Sky Sports Premier League drops a packet, the failover stream takes over in under 200 milliseconds — faster than the human eye can perceive.
+                </p>
+              </div>
+              <div className="p-6 rounded-[16px] bg-card/60 border border-line">
+                <h3 className="font-display font-semibold text-body text-base mb-3">Our Commitment to the Future</h3>
+                <p className="text-sm text-muted leading-relaxed mb-3">
+                  We are continuously investing in the platform. In 2026, our roadmap includes expanding the 4K channel library to cover all Premier League matches (currently selected fixtures), native HDR10+ support for compatible displays, and reducing channel list load times via a new API layer.
+                </p>
+                <p className="text-sm text-muted leading-relaxed">
+                  We also listen to our customers. Our most-requested features — including expanded Arabic and South Asian sports channels, more Catch-up TV coverage, and a dedicated mobile app — are all on our development schedule. If you have a feature suggestion, our{" "}
+                  <Link href="/contact/" className="text-accent hover:text-body transition-colors">support team</Link>{" "}
+                  logs every request and the most popular ones are prioritised in our quarterly planning cycle.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why choose us ────────────────────────────────────────────────── */}
+      <section className="py-20 bg-surface">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">Why Choose Us</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}>
+            What Sets Us Apart from Other UK IPTV Providers
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[720px] mb-10">
+            The UK IPTV market has hundreds of providers. Most are one-person operations running reseller panels with no technical infrastructure, no customer support, and no accountability when streams go down. Here is an honest breakdown of what distinguishes a genuine service from a reseller.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {[
+              {
+                area: "Technical Infrastructure",
+                us: "Owned UK-based server clusters with automatic failover across multiple data centres. Real-time stream monitoring on all 35,000+ channels.",
+                them: "Reseller panels with no direct server ownership. When the upstream provider has issues, the entire customer base is affected with no recourse.",
+              },
+              {
+                area: "Customer Support",
+                us: "24/7 live chat and email support. Average response under one hour. A real person responds to every ticket — no AI bot deflection.",
+                them: "Telegram groups or Discord servers as support. No guaranteed response time. Common for providers to simply disappear.",
+              },
+              {
+                area: "Channel Reliability",
+                us: "Redundant feeds for major channels. Quality control monitoring every 15 minutes. Channel issues resolved before most customers notice.",
+                them: "Single-feed sources. Channel outages can last hours or days. No proactive monitoring.",
+              },
+              {
+                area: "Pricing Transparency",
+                us: "Published prices include VAT. No hidden charges. No auto-renewal without explicit consent. 7-day money-back guarantee in writing.",
+                them: "Prices often exclude VAT. Renewal terms unclear. Refund policies non-existent or impossible to enforce.",
+              },
+            ].map((row) => (
+              <div key={row.area} className="rounded-[16px] border border-line overflow-hidden">
+                <div className="px-5 py-3 bg-card border-b border-line">
+                  <h3 className="font-display font-semibold text-body text-sm">{row.area}</h3>
+                </div>
+                <div className="grid grid-cols-2 divide-x divide-line">
+                  <div className="p-4">
+                    <p className="text-[11px] font-bold text-accent uppercase tracking-[0.06em] mb-2">IPTV UK Subscription</p>
+                    <p className="text-xs text-muted leading-relaxed">{row.us}</p>
+                  </div>
+                  <div className="p-4">
+                    <p className="text-[11px] font-bold text-subtle uppercase tracking-[0.06em] mb-2">Typical Resellers</p>
+                    <p className="text-xs text-muted leading-relaxed">{row.them}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/pricing/" className="inline-flex items-center h-10 px-5 rounded-[10px] text-sm font-semibold bg-accent text-white shadow-[0_0_16px_var(--accent-glow)] hover:bg-accent-hover transition-all duration-300">
+              View Plans →
+            </Link>
+            <Link href="/faq/" className="inline-flex items-center h-10 px-5 rounded-[10px] text-sm font-medium border border-line text-muted hover:border-accent/40 hover:text-body transition-all duration-200">
+              Read FAQ
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Internal links ───────────────────────────────────────────────── */}
       <section className="py-14 bg-deep border-y border-line">
         <div className="mx-auto max-w-[1200px] px-6 text-center">

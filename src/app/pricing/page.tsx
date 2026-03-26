@@ -133,6 +133,118 @@ export default function PricingPage(): React.ReactElement {
         </div>
       </section>
 
+      {/* ── Choosing the right plan ──────────────────────────────────────── */}
+      <section className="py-20 bg-deep">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">Plan Comparison</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}>
+            Choosing the Right Plan
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[720px] mb-10">
+            All three plans share the same 35,000+ channel library, so the decision comes down to how many screens you need, whether 4K quality matters, and how long you want to commit. Here is an honest breakdown to help you choose without guesswork.
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                plan: "Starter",
+                price: "From £8.99/mo",
+                best: "Solo viewers, casual streaming",
+                desc: "The Starter plan is the ideal entry point if you are new to IPTV or want to test the service before committing to a longer subscription. You get the full 35,000+ channel lineup, Full HD streaming, and our 7-day EPG on a single connection. There is no catch-up TV on Starter, and streams are capped at Full HD rather than 4K — but for most everyday viewing, including sports in 1080p, the quality is excellent. Choose Starter if you watch on one screen at a time and do not need to rewind or replay programmes you missed.",
+                highlights: ["Full 35,000+ channels", "Full HD (1080p)", "1 simultaneous stream", "7-day EPG", "Single-device friendly"],
+              },
+              {
+                plan: "Silver",
+                price: "From £6.92/mo",
+                best: "Couples & small households",
+                desc: "Silver is our most popular choice for households with two or more viewers. You get everything in Starter — plus 4K Ultra HD on compatible sport and cinema channels, two simultaneous connections, and 7-day catch-up TV. The 4K upgrade alone transforms Premier League matches and Sky Cinema titles on a modern television. Catch-up is invaluable for families: if someone misses a match or episode, they can watch it back within the week. Silver's value-per-feature ratio is the best in our lineup.",
+                highlights: ["Full 35,000+ channels", "4K Ultra HD", "2 simultaneous streams", "7-day catch-up TV", "Best value rating"],
+              },
+              {
+                plan: "Golden",
+                price: "From £4.92/mo",
+                best: "Families & serious sport fans",
+                desc: "Golden is our flagship plan and the choice for households where IPTV is the primary TV source. You get two simultaneous 4K streams, full catch-up TV, and our anti-freeze buffer technology — engineered specifically for the demands of simultaneous Premier League kick-offs. Anti-freeze pre-loads stream frames ahead of playback, eliminating the freeze-and-rebuffer cycle during high-demand events like Champions League finals and major boxing nights. On a 12-month Golden plan, the per-month cost is the lowest in UK IPTV.",
+                highlights: ["Full 35,000+ channels", "4K Ultra HD", "2 simultaneous streams", "7-day catch-up TV", "Anti-freeze technology"],
+              },
+            ].map((p) => (
+              <div key={p.plan} className="p-7 rounded-[20px] bg-card border border-line flex flex-col gap-4">
+                <div>
+                  <p className="text-xs font-body font-bold text-accent uppercase tracking-[0.08em] mb-1">{p.plan}</p>
+                  <p className="font-display font-bold text-body text-xl mb-1">{p.price}</p>
+                  <p className="text-xs text-subtle">{p.best}</p>
+                </div>
+                <p className="text-xs text-muted leading-relaxed">{p.desc}</p>
+                <ul className="flex flex-col gap-1.5">
+                  {p.highlights.map((h) => (
+                    <li key={h} className="text-xs text-muted flex items-start gap-2">
+                      <span className="shrink-0 text-accent mt-0.5">✓</span>{h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Sky vs IPTV comparison */}
+          <div className="rounded-[20px] border border-line overflow-hidden">
+            <div className="px-7 py-5 bg-card border-b border-line">
+              <h3 className="font-display font-bold text-body text-lg">What You Save vs Sky & Virgin Media</h3>
+              <p className="text-sm text-muted mt-1">Annual cost comparison for a comparable UK sports and entertainment package, 2026.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-line">
+              {[
+                { provider: "Sky Sports + Entertainment", monthly: "~£75/mo", annual: "~£900/yr", note: "Sports, HD, basic entertainment. No 4K. Contract required." },
+                { provider: "Virgin Media Full House", monthly: "~£85/mo", annual: "~£1,020/yr", note: "Broad channel lineup. Requires hardware install. 18-month contract." },
+                { provider: "TNT Sports + Discovery+", monthly: "~£30/mo", annual: "~£360/yr", note: "Sports only. No UK terrestrials, no catch-up. Additional Sky Sports sub needed." },
+                { provider: "IPTV UK — Golden (12mo)", monthly: "£4.92/mo", annual: "~£59/yr", note: "35,000+ channels, 4K, catch-up, anti-freeze. No contract. Instant activation." },
+              ].map((row, i) => (
+                <div key={row.provider} className={`p-5 bg-card ${i === 3 ? "border-l-2 border-accent" : ""}`}>
+                  <p className={`text-xs font-body font-bold mb-1 ${i === 3 ? "text-accent" : "text-body"}`}>{row.provider}</p>
+                  <p className="font-display font-bold text-2xl text-body leading-none tabular-nums mb-1">{row.monthly}</p>
+                  <p className="text-[11px] text-accent mb-2">{row.annual}</p>
+                  <p className="text-[11px] text-muted leading-relaxed">{row.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="mt-4 text-xs text-subtle">
+            Sky and Virgin prices based on published 2026 rates. IPTV UK Subscription prices inclusive of VAT. Savings vary based on chosen plan and duration.
+          </p>
+        </div>
+      </section>
+
+      {/* ── How to get started ───────────────────────────────────────────── */}
+      <section className="py-20 bg-surface">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <p className="label-tag mb-4">How It Works</p>
+          <h2 className="font-display font-bold tracking-[-0.03em] text-body mb-4" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}>
+            From Payment to Streaming in Under 5 Minutes
+          </h2>
+          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-[640px] mb-10">
+            Unlike traditional TV providers, there are no engineer visits, no hardware deliveries, and no waiting periods. Our <strong className="text-body font-medium">IPTV UK subscription</strong> is a software service — you buy, receive credentials, enter them into a player app, and watch. Here is exactly what happens after you click Buy.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { step: "01", title: "Choose Your Plan", desc: "Select Starter, Silver, or Golden, then choose your subscription duration — 3, 6, or 12 months. Longer durations reduce the monthly price significantly." },
+              { step: "02", title: "Complete Payment", desc: "Pay securely by card, PayPal, or cryptocurrency. Payment is processed instantly via our PCI-compliant gateway. No subscription box or minimum term." },
+              { step: "03", title: "Receive Credentials", desc: "Within minutes of payment, your M3U playlist URL, username, and password are delivered to your email. They are valid for the entire subscription period." },
+              { step: "04", title: "Start Watching", desc: "Install a free IPTV player app on your device (we recommend TiviMate for Fire Stick), enter your M3U URL, and browse 35,000+ channels immediately." },
+            ].map((item) => (
+              <div key={item.step} className="p-6 rounded-[16px] bg-card border border-line">
+                <span className="font-display font-bold text-3xl text-accent/40 leading-none block mb-3">{item.step}</span>
+                <h3 className="font-display font-semibold text-body text-base mb-2">{item.title}</h3>
+                <p className="text-xs text-muted leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-sm text-muted leading-relaxed max-w-[680px]">
+            Not sure which app to use? Our{" "}
+            <Link href="/setup-guide/" className="text-accent hover:text-body transition-colors">setup guide</Link>{" "}
+            covers every device with step-by-step screenshots — Amazon Fire Stick, Android TV, Samsung Smart TV, LG TV, iPhone, iPad, Windows, and MAG Box. Most customers are streaming within 5 minutes without ever needing to contact support.
+          </p>
+        </div>
+      </section>
+
       {/* ── Pricing FAQ ──────────────────────────────────────────────────── */}
       <section className="py-20 bg-deep">
         <div className="mx-auto max-w-[860px] px-6">
