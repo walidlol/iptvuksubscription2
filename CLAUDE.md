@@ -26,21 +26,35 @@ Commands are in .claude/commands/:
 ## Design System — AWWWARDS QUALITY
 
 ### Colors (CSS Variables)
---bg-deep: #050508          (deepest background)
---bg-primary: #0A0A10       (main background)
---bg-card: #0E0E16          (card surfaces)
---bg-card-hover: #13131D    (card hover state)
---border: #1A1A2E           (subtle borders)
---border-hover: #252540     (hover borders)
---accent: #00E87B           (primary emerald — use SPARINGLY)
---accent-dim: rgba(0,232,123,0.10)
---accent-glow: rgba(0,232,123,0.25)
---cyan: #00B4D8             (secondary — gradients only)
---gold: #FFB800             (best value badge)
---text-primary: #EEEEF5     (main text)
---text-secondary: #7B7B9A   (muted text)
---text-tertiary: #4A4A65    (very muted)
---danger: #FF4757           (errors)
+#### Dark Mode (Default)
+--bg-deep: #050507
+--bg-primary: #0A0A0E
+--bg-card: #0E0E14
+--bg-card-hover: #141420
+--border: #1A1A2E
+--border-hover: #252540
+--accent: #FF2D55            (vibrant red — primary accent)
+--accent-dim: rgba(255,45,85,0.10)
+--accent-glow: rgba(255,45,85,0.25)
+--accent-secondary: #FF6B6B  (soft coral — secondary)
+--text-primary: #EEEEF5
+--text-secondary: #7B7B9A
+--text-tertiary: #4A4A65
+
+#### Light Mode
+--bg-deep: #FAFAFA
+--bg-primary: #FFFFFF
+--bg-card: #F5F5F7
+--bg-card-hover: #EBEBF0
+--border: #E0E0E8
+--border-hover: #D0D0DA
+--accent: #0066FF             (electric blue — primary accent)
+--accent-dim: rgba(0,102,255,0.08)
+--accent-glow: rgba(0,102,255,0.20)
+--accent-secondary: #4D94FF   (lighter blue — secondary)
+--text-primary: #1A1A2E
+--text-secondary: #6B6B85
+--text-tertiary: #9B9BB0
 
 ### Typography
 - Display/Headlines: "Clash Display" (import from CDN)

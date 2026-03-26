@@ -1,0 +1,10 @@
+<svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon -->
+  <path d="M16 2L28.12 9V23L16 30L3.88 23V9L16 2Z" fill="#FF2D55" opacity="0.15"/>
+  <path d="M16 2L28.12 9V23L16 30L3.88 23V9L16 2Z" stroke="#FF2D55" stroke-width="1.5" fill="none"/>
+  <path d="M13 11L22 16L13 21V11Z" fill="#FF2D55"/>
+  <circle cx="24" cy="8" r="1.5" fill="#FF6B35"/>
+  <!-- Wordmark -->
+  <text x="36" y="22" font-family="'Clash Display', system-ui, sans-serif" font-weight="700" font-size="16" fill="#EEEEF5" letter-spacing="-0.5">IPTV</text>
+  <text x="73" y="22" font-family="'Clash Display', system-ui, sans-serif" font-weight="700" font-size="16" fill="#FF2D55" letter-spacing="-0.5"> UK</text>
+</svg>

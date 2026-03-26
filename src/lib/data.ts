@@ -13,10 +13,10 @@ import type {
 export const navItems: NavItem[] = [
   { label: "Channels", href: "/iptv-uk-channels/" },
   { label: "Features", href: "/iptv-subscription-uk/" },
-  { label: "Pricing", href: "/pricing/" },
-  { label: "Setup", href: "/setup-guide/" },
-  { label: "Blog", href: "/blog/" },
-  { label: "FAQ", href: "/faq/" },
+  { label: "Pricing",  href: "/pricing/" },
+  { label: "Setup",    href: "/setup-guide/" },
+  { label: "Blog",     href: "/blog/" },
+  { label: "FAQ",      href: "/faq/" },
 ];
 
 // ─── Pricing Plans ────────────────────────────────────────────────────────
@@ -31,7 +31,7 @@ export const plans: Plan[] = [
     isBestValue: false,
     connections: 1,
     features: [
-      "10,000+ live channels",
+      "35,000+ live channels",
       "Full HD & 4K streams",
       "UK, US & international",
       "24/7 customer support",
@@ -47,7 +47,7 @@ export const plans: Plan[] = [
     isBestValue: false,
     connections: 1,
     features: [
-      "10,000+ live channels",
+      "35,000+ live channels",
       "Full HD & 4K streams",
       "UK, US & international",
       "24/7 customer support",
@@ -65,7 +65,7 @@ export const plans: Plan[] = [
     connections: 2,
     badge: "Best Value",
     features: [
-      "10,000+ live channels",
+      "35,000+ live channels",
       "Full HD & 4K streams",
       "UK, US & international",
       "24/7 priority support",
@@ -84,7 +84,7 @@ export const plans: Plan[] = [
     isBestValue: false,
     connections: 2,
     features: [
-      "10,000+ live channels",
+      "35,000+ live channels",
       "Full HD & 4K streams",
       "UK, US & international",
       "24/7 priority support",
@@ -100,39 +100,180 @@ export const plans: Plan[] = [
 // ─── Stats ────────────────────────────────────────────────────────────────
 
 export const stats: Stat[] = [
-  { label: "Live Channels", value: "10,000", suffix: "+" },
+  { label: "Live Channels",      value: "35,000", suffix: "+" },
   { label: "Active Subscribers", value: "50,000", suffix: "+" },
-  { label: "Countries Covered", value: "150", suffix: "+" },
-  { label: "Uptime", value: "99.9", suffix: "%" },
+  { label: "Countries Covered",  value: "150",    suffix: "+" },
+  { label: "Uptime",             value: "99.9",   suffix: "%" },
 ];
 
-// ─── Content Showcase (The 20 items from CLAUDE.md) ───────────────────────
+// ─── Content Showcase ─────────────────────────────────────────────────────
+// Images match actual files in public/images/content/
 
 export const contentItems: ContentItem[] = [
   // Movies
-  { id: "m1", title: "The Batman II", type: "movie", genre: "DC · Thriller", year: 2026 },
-  { id: "m2", title: "Avengers: Doomsday", type: "movie", genre: "Marvel · Action", year: 2026 },
-  { id: "m3", title: "Dune: Messiah", type: "movie", genre: "Sci-Fi · Epic", year: 2026 },
-  { id: "m4", title: "Mission: Impossible 8", type: "movie", genre: "Action · Thriller", year: 2026 },
-  { id: "m5", title: "Deadpool 4", type: "movie", genre: "Comedy · Action", year: 2026 },
+  {
+    id: "m1",
+    title: "Avengers: Doomsday",
+    type: "movie",
+    genre: "Marvel · Action",
+    year: 2026,
+    image: "/images/content/movies/avengers-doomsday-official-release-date-uk.jpg",
+  },
+  {
+    id: "m2",
+    title: "Dune: Part Three",
+    type: "movie",
+    genre: "Sci-Fi · Epic",
+    year: 2026,
+    image: "/images/content/movies/dune-part-three-online-streaming-platform-uk.jpg",
+  },
+  {
+    id: "m3",
+    title: "Project Hail Mary",
+    type: "movie",
+    genre: "Sci-Fi · Adventure",
+    year: 2026,
+    image: "/images/content/movies/Project-Hail-Mary-IPTV-UK-streaming.jpg",
+  },
+  {
+    id: "m4",
+    title: "Send Help",
+    type: "movie",
+    genre: "Horror · Thriller",
+    year: 2026,
+    image: "/images/content/movies/send-help-movie-watch-online-uk-free-iptv-subscription.jpg",
+  },
+  {
+    id: "m5",
+    title: "The Odyssey",
+    type: "movie",
+    genre: "Epic · Drama",
+    year: 2026,
+    image: "/images/content/movies/the-odyssey-movie-2026-streaming-availability.jpg",
+  },
   // TV Shows
-  { id: "t1", title: "Stranger Things 5", type: "tvshow", genre: "Sci-Fi · Horror", year: 2026 },
-  { id: "t2", title: "The Last of Us S3", type: "tvshow", genre: "Drama · Thriller", year: 2026 },
-  { id: "t3", title: "House of the Dragon S3", type: "tvshow", genre: "Fantasy · Drama", year: 2026 },
-  { id: "t4", title: "Wednesday S2", type: "tvshow", genre: "Comedy · Horror", year: 2026 },
-  { id: "t5", title: "Squid Game S3", type: "tvshow", genre: "Thriller · Drama", year: 2026 },
+  {
+    id: "t1",
+    title: "Stranger Things 5",
+    type: "tvshow",
+    genre: "Sci-Fi · Horror",
+    year: 2026,
+    image: "/images/content/tvshows/iptv-uk-subscription-Stranger-Things-5.jpg",
+  },
+  {
+    id: "t2",
+    title: "Spider-Noir",
+    type: "tvshow",
+    genre: "Marvel · Noir",
+    year: 2026,
+    image: "/images/content/tvshows/spider-noir-tv-show-streaming-guide-reddit.jpg",
+  },
+  {
+    id: "t3",
+    title: "A Knight of the Seven Kingdoms",
+    type: "tvshow",
+    genre: "HBO · Fantasy",
+    year: 2026,
+    image: "/images/content/tvshows/a-knight-of-the-seven-kingdoms-where-to-watch.jpg",
+  },
+  {
+    id: "t4",
+    title: "One Piece Season 2",
+    type: "tvshow",
+    genre: "Netflix · Adventure",
+    year: 2026,
+    image: "/images/content/tvshows/how-to-watch-one-piece-tv-show-netflix-iptvuksubscription.uk.jpg",
+  },
+  {
+    id: "t5",
+    title: "Succession",
+    type: "tvshow",
+    genre: "HBO · Drama",
+    year: 2026,
+    image: "/images/content/tvshows/iptv-uk-subscription-succession-tv-show-2026-watch-online.jpg",
+  },
   // Sports
-  { id: "s1", title: "Premier League Live", type: "sport", genre: "Football", frequency: "Weekly" },
-  { id: "s2", title: "Champions League", type: "sport", genre: "Football", frequency: "Tues/Wed" },
-  { id: "s3", title: "Formula 1 Racing", type: "sport", genre: "Motorsport", frequency: "Bi-weekly" },
-  { id: "s4", title: "Boxing PPV Events", type: "sport", genre: "Combat", frequency: "Monthly" },
-  { id: "s5", title: "NFL Game Pass", type: "sport", genre: "American Football", frequency: "Weekly" },
-  // News
-  { id: "n1", title: "BBC News 24/7", type: "news", genre: "UK News", frequency: "Live" },
-  { id: "n2", title: "Sky News Live", type: "news", genre: "UK News", frequency: "Live" },
-  { id: "n3", title: "CNN International", type: "news", genre: "World News", frequency: "Live" },
-  { id: "n4", title: "Al Jazeera English", type: "news", genre: "World News", frequency: "Live" },
-  { id: "n5", title: "ITV News", type: "news", genre: "UK News", frequency: "Live" },
+  {
+    id: "s1",
+    title: "Premier League Live",
+    type: "sport",
+    genre: "Football",
+    frequency: "Weekly",
+    image: "/images/content/sports/best-iptv-for-premier-league-football-uk.jpg",
+  },
+  {
+    id: "s2",
+    title: "UFC PPV Events",
+    type: "sport",
+    genre: "Combat Sports",
+    frequency: "Monthly",
+    image: "/images/content/sports/watch-ufc-live-stream-free-uk-iptv-subscription.jpg",
+  },
+  {
+    id: "s3",
+    title: "Formula 1 Racing",
+    type: "sport",
+    genre: "Motorsport",
+    frequency: "Bi-weekly",
+    image: "/images/content/sports/watch-f1-live-stream-free-uk-reddit-2026.jpg",
+  },
+  {
+    id: "s4",
+    title: "MLB Baseball",
+    type: "sport",
+    genre: "Baseball",
+    frequency: "Weekly",
+    image: "/images/content/sports/how-to-watch-mlb-2026-live-stream-uk.jpg",
+  },
+  {
+    id: "s5",
+    title: "Champions League",
+    type: "sport",
+    genre: "Football",
+    frequency: "Tues/Wed",
+    image: "/images/content/sports/best-sports-streaming-apps-recommendations-uk.jpg",
+  },
+  // News & Entertainment
+  {
+    id: "n1",
+    title: "CNN International",
+    type: "news",
+    genre: "World News",
+    frequency: "Live",
+    image: "/images/content/news/CNN-news-uk-iptv-channel-working-2026.jpg",
+  },
+  {
+    id: "n2",
+    title: "Al Jazeera English",
+    type: "news",
+    genre: "World News",
+    frequency: "Live",
+    image: "/images/content/news/where-to-whatch-al-jazeera-uk-iptv-channel-working-2026.jpg",
+  },
+  {
+    id: "n3",
+    title: "The Tonight Show",
+    type: "news",
+    genre: "Entertainment",
+    frequency: "Nightly",
+    image: "/images/content/news/iptv-uk-subscriptinon-watch-jimmy-fallon-tonight-show-live-2026.jpg",
+  },
+  {
+    id: "n4",
+    title: "Sky News Live",
+    type: "news",
+    genre: "UK News",
+    frequency: "Live",
+    image: "/images/content/news/best-iptv-subscription-for-uk-2026-reddit-reviews.jpg",
+  },
+  {
+    id: "n5",
+    title: "BBC News 24/7",
+    type: "news",
+    genre: "UK News",
+    frequency: "Live",
+    image: "/images/content/news/where-to-find-trusted-iptv-sellers-reddit-2026.jpg",
+  },
 ];
 
 // ─── Testimonials ─────────────────────────────────────────────────────────
@@ -192,6 +333,24 @@ export const testimonials: Testimonial[] = [
     plan: "6 Month",
     date: "2026-02-14",
   },
+  {
+    id: "r7",
+    name: "Tom H.",
+    location: "Liverpool",
+    rating: 5,
+    body: "The free trial convinced me immediately. Signed up for 12 months and haven't looked back. Massive channel list.",
+    plan: "12 Month",
+    date: "2026-02-20",
+  },
+  {
+    id: "r8",
+    name: "Priya S.",
+    location: "Leicester",
+    rating: 5,
+    body: "International channels are phenomenal — I get channels from India, Pakistan, and the UAE alongside all UK content.",
+    plan: "6 Month",
+    date: "2026-03-01",
+  },
 ];
 
 // ─── FAQ ──────────────────────────────────────────────────────────────────
@@ -222,7 +381,7 @@ export const faqItems: FaqItem[] = [
     id: "f4",
     question: "How many channels are included?",
     answer:
-      "All plans include 10,000+ live channels covering UK terrestrial (BBC, ITV, Channel 4, Channel 5), Sky Sports, BT Sport, Sky Cinema, international channels from 150+ countries, and 24/7 news channels. Sports and premium channels are included at no extra cost.",
+      "All plans include 35,000+ live channels covering UK terrestrial (BBC, ITV, Channel 4, Channel 5), Sky Sports, BT Sport, Sky Cinema, international channels from 150+ countries, and 24/7 news channels. Sports and premium channels are included at no extra cost.",
     category: "channels",
   },
   {

@@ -5,9 +5,8 @@ import ContentShowcase from "@/components/home/ContentShowcase";
 import PricingSection from "@/components/home/PricingSection";
 import DeviceSection from "@/components/home/DeviceSection";
 import FAQ from "@/components/home/FAQ";
+import TestimonialMarquee from "@/components/home/TestimonialMarquee";
 import CTABanner from "@/components/home/CTABanner";
-
-// ─── Schema ───────────────────────────────────────────────────────────────
 
 const SITE_URL = "https://iptvuksubscription.uk";
 
@@ -22,8 +21,6 @@ const websiteSchema = {
     "query-input": "required name=search_term_string",
   },
 };
-
-// ─── Metadata ─────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
   title: "IPTV UK Subscription | 35,000+ Channels | Premium UK IPTV 2026",
@@ -58,8 +55,6 @@ export const metadata: Metadata = {
   },
 };
 
-// ─── Page ─────────────────────────────────────────────────────────────────
-
 export default function HomePage(): React.ReactElement {
   return (
     <>
@@ -72,6 +67,7 @@ export default function HomePage(): React.ReactElement {
       <ContentShowcase />
       <PricingSection />
       <DeviceSection />
+      <TestimonialMarquee />
       <FAQ />
       <CTABanner />
     </>

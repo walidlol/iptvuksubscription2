@@ -1,23 +1,53 @@
 @import url("https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap");
 @import "tailwindcss";
 
-/* ─── Design Tokens (CLAUDE.md canonical variables) ─────────────────────── */
-:root {
+/* ─── Theme: Dark (default) ──────────────────────────────────────────────── */
+:root,
+html[data-theme="dark"] {
   --bg-deep:        #050508;
   --bg-primary:     #0A0A10;
   --bg-card:        #0E0E16;
   --bg-card-hover:  #13131D;
   --border:         #1A1A2E;
   --border-hover:   #252540;
-  --accent:         #00E87B;
-  --accent-dim:     rgba(0, 232, 123, 0.10);
-  --accent-glow:    rgba(0, 232, 123, 0.25);
-  --cyan:           #00B4D8;
+  --accent:         #FF2D55;
+  --accent-dim:     rgba(255, 45, 85, 0.10);
+  --accent-glow:    rgba(255, 45, 85, 0.28);
+  --accent-hover:   #E0002A;
+  --cyan:           #FF6B35;
   --gold:           #FFB800;
   --text-primary:   #EEEEF5;
   --text-secondary: #7B7B9A;
   --text-tertiary:  #4A4A65;
   --danger:         #FF4757;
+  --scrollbar-thumb: #252540;
+  --grid-line:      rgba(255,255,255,0.03);
+  --noise-opacity:  0.025;
+  --orb-opacity:    0.18;
+}
+
+/* ─── Theme: Light ───────────────────────────────────────────────────────── */
+html[data-theme="light"] {
+  --bg-deep:        #EEF0FF;
+  --bg-primary:     #FFFFFF;
+  --bg-card:        #F5F6FF;
+  --bg-card-hover:  #ECEEFF;
+  --border:         #DDE0FF;
+  --border-hover:   #C5CAFF;
+  --accent:         #0066FF;
+  --accent-dim:     rgba(0, 102, 255, 0.08);
+  --accent-glow:    rgba(0, 102, 255, 0.30);
+  --accent-hover:   #0052CC;
+  --cyan:           #00B4D8;
+  --gold:           #F59E0B;
+  --text-primary:   #0A0A1A;
+  --text-secondary: #4A4A6A;
+  --text-tertiary:  #8A8AAA;
+  --danger:         #EF4444;
+  --scrollbar-thumb: #C5CAFF;
+  --grid-line:      rgba(0,0,0,0.04);
+  --noise-opacity:  0.015;
+  --orb-opacity:    0.12;
 }
 
 /* ─── Tailwind v4 Theme (utility class generation) ───────────────────────── */
@@ -36,6 +66,7 @@
   --color-accent:      var(--accent);
   --color-accent-dim:  var(--accent-dim);
   --color-accent-glow: var(--accent-glow);
+  --color-accent-hover: var(--accent-hover);
   --color-cyan:        var(--cyan);
   --color-gold:        var(--gold);
   --color-danger:      var(--danger);
@@ -68,6 +99,7 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body), system-ui, sans-serif;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
@@ -80,7 +112,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-hover);
+  background: var(--scrollbar-thumb);
   border-radius: 9999px;
 }
 
@@ -111,3 +143,180 @@ body {
   color: var(--accent);
   font-family: var(--font-body), system-ui, sans-serif;
 }
+
+/* ─── Scroll progress bar ────────────────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--cyan) 100%);
+  z-index: 9999;
+  transform-origin: left;
+  transition: none;
+  pointer-events: none;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ─── Custom cursor ──────────────────────────────────────────────────────── */
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button, [role="button"], [role="tab"] { cursor: none; }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease, border-color 0.2s ease;
+  opacity: 0.5;
+}
+
+.cursor-ring.hovered {
+  width: 48px;
+  height: 48px;
+  opacity: 0.8;
+  border-color: var(--accent);
+}
+
+/* ─── Magnetic button ────────────────────────────────────────────────────── */
+.magnetic {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Gradient border card hover ─────────────────────────────────────────── */
+.card-glow {
+  position: relative;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.card-glow:hover::before {
+  opacity: 0.5;
+}
+
+/* ─── Page transition ────────────────────────────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Anime.js targets ───────────────────────────────────────────────────── */
+.hero-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+.anime-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+.anime-fade-in {
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* ─── Marquee ────────────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Float animation ────────────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(1deg); }
+  66%       { transform: translateY(4px) rotate(-0.5deg); }
+}
+
+.float { animation: float 6s ease-in-out infinite; }
+.float-delay-1 { animation-delay: -2s; }
+.float-delay-2 { animation-delay: -4s; }
+
+/* ─── Particle dot ───────────────────────────────────────────────────────── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  animation: particle-float linear infinite;
+}
+
+@keyframes particle-float {
+  0%   { transform: translateY(0) scale(1);   opacity: 0; }
+  10%  { opacity: var(--particle-opacity, 0.4); }
+  90%  { opacity: var(--particle-opacity, 0.4); }
+  100% { transform: translateY(-120px) scale(0.5); opacity: 0; }
+}
+
+/* ─── Live counter pulse ─────────────────────────────────────────────────── */
+@keyframes live-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50%       { box-shadow: 0 0 0 6px transparent; }
+}
+
+.live-dot {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Theme transition ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Disable transition on scroll for performance */
+.notransition { transition: none !important; }

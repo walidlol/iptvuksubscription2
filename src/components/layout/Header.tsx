@@ -1,17 +1,15 @@
 "use client";
 
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
 
 // ─── Nav items ────────────────────────────────────────────────────────────
-//
-// anchor: smooth-scroll target used only on the homepage ("/").
-// On every other page the item falls back to href.
 
 interface NavItem {
   label: string;
@@ -27,13 +25,40 @@ const NAV_ITEMS: NavItem[] = [
   { label: "FAQ",      href: "/faq/",                  anchor: "#faq"      },
 ];
 
-// CLAUDE.md spring easing
 const SPRING = [0.16, 1, 0.3, 1] as const;
+
+// ─── Sun icon ─────────────────────────────────────────────────────────────
+
+function SunIcon(): React.ReactElement {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1"  x2="12" y2="3"  />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22"  y1="4.22"  x2="5.64"  y2="5.64"  />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1"  y1="12" x2="3"  y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36" />
+      <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"  />
+    </svg>
+  );
+}
+
+// ─── Moon icon ────────────────────────────────────────────────────────────
+
+function MoonIcon(): React.ReactElement {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+    </svg>
+  );
+}
 
 // ─── Mobile menu animation ────────────────────────────────────────────────
 
 const mobileMenuVariants = {
-  hidden: { height: 0, opacity: 0 },
+  hidden:  { height: 0, opacity: 0 },
   visible: { height: "auto", opacity: 1 },
 };
 
@@ -41,14 +66,24 @@ const mobileMenuVariants = {
 
 export default function Header(): React.ReactElement {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome   = pathname === "/";
+  const { theme, toggle } = useTheme();
 
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [mounted,   setMounted]   = useState(false);
+
+  const mountedRef = useRef(false);
+  useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+      startTransition(() => setMounted(true));
+    }
+  }, []);
 
   // Transparent → solid on scroll
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = (): void => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -70,8 +105,9 @@ export default function Header(): React.ReactElement {
           : "bg-transparent border-transparent"
       )}
     >
-      {/* ── Desktop bar ─────────────────────────────────────────────────── */}
+      {/* ── Desktop bar ───────────────────────────────────────────────── */}
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6">
+
         {/* Logo + brand */}
         <Link
           href="/"
@@ -94,9 +130,8 @@ export default function Header(): React.ReactElement {
         {/* Desktop nav */}
         <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
-            const href = resolveHref(item);
+            const href     = resolveHref(item);
             const isActive = pathname === item.href;
-
             return (
               <Link
                 key={item.href}
@@ -114,8 +149,45 @@ export default function Header(): React.ReactElement {
           })}
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Desktop CTA + theme toggle */}
+        <div className="hidden md:flex items-center gap-2">
+          {/* Theme toggle */}
+          {mounted && (
+            <button
+              onClick={toggle}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              className={cn(
+                "flex items-center justify-center w-9 h-9 rounded-lg",
+                "text-muted hover:text-body hover:bg-card",
+                "transition-all duration-200"
+              )}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {theme === "dark" ? (
+                  <motion.span
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <SunIcon />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <MoonIcon />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          )}
+
           <Link
             href="/contact/"
             className="px-4 py-2 text-sm text-muted hover:text-body transition-colors"
@@ -126,9 +198,9 @@ export default function Header(): React.ReactElement {
             href="/pricing/"
             className={cn(
               "inline-flex items-center h-9 px-5 rounded-[10px] text-sm font-semibold",
-              "bg-accent text-deep",
+              "bg-accent text-white",
               "shadow-[0_0_16px_var(--accent-glow)]",
-              "hover:bg-[#00cc6a] hover:shadow-[0_0_28px_var(--accent-glow)]",
+              "hover:bg-accent-hover hover:shadow-[0_0_28px_var(--accent-glow)]",
               "transition-all duration-300"
             )}
           >
@@ -136,41 +208,52 @@ export default function Header(): React.ReactElement {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-muted hover:text-body hover:bg-card transition-colors"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            {menuOpen ? (
-              <motion.span
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0,   opacity: 1 }}
-                exit={{   rotate:  90, opacity: 0 }}
-                transition={{ duration: 0.15 }}
-              >
-                <X size={18} />
-              </motion.span>
-            ) : (
-              <motion.span
-                key="open"
-                initial={{ rotate:  90, opacity: 0 }}
-                animate={{ rotate: 0,   opacity: 1 }}
-                exit={{   rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.15 }}
-              >
-                <Menu size={18} />
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </button>
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-1">
+          {mounted && (
+            <button
+              onClick={toggle}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              className="flex items-center justify-center w-9 h-9 rounded-lg text-muted hover:text-body hover:bg-card transition-colors"
+            >
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+            </button>
+          )}
+          <button
+            className="flex items-center justify-center w-9 h-9 rounded-lg text-muted hover:text-body hover:bg-card transition-colors"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {menuOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <X size={18} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="open"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <Menu size={18} />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
       </div>
 
-      {/* ── Mobile menu ─────────────────────────────────────────────────── */}
+      {/* ── Mobile menu ───────────────────────────────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -185,9 +268,8 @@ export default function Header(): React.ReactElement {
           >
             <nav className="flex flex-col px-6 py-4 gap-0.5">
               {NAV_ITEMS.map((item, i) => {
-                const href = resolveHref(item);
+                const href     = resolveHref(item);
                 const isActive = pathname === item.href;
-
                 return (
                   <motion.div
                     key={item.href}
@@ -226,9 +308,8 @@ export default function Header(): React.ReactElement {
                   onClick={() => setMenuOpen(false)}
                   className={cn(
                     "flex items-center justify-center h-10 rounded-[10px] text-sm font-semibold",
-                    "bg-accent text-deep",
+                    "bg-accent text-white",
                     "shadow-[0_0_16px_var(--accent-glow)]",
-                    "hover:bg-[#00cc6a]",
                     "transition-all duration-200"
                   )}
                 >

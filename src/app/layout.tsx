@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CustomCursor from "@/components/ui/CustomCursor";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
     template: "%s | IPTV UK Subscription",
   },
   description:
-    "The UK's most reliable IPTV subscription. Access 10,000+ live channels, sports, and entertainment with instant activation — no contracts.",
+    "The UK's most reliable IPTV subscription. Access 35,000+ live channels, 4K sport & 100,000+ on-demand titles with instant activation — no contracts.",
   keywords: [
     "iptv uk subscription",
     "iptv subscription uk",
@@ -62,13 +65,13 @@ export const metadata: Metadata = {
     siteName: "IPTV UK Subscription",
     title: "IPTV UK Subscription — Premium Streaming Channels",
     description:
-      "10,000+ live channels, sports, and entertainment. Instant activation, no contracts.",
+      "35,000+ live channels, 4K sport & 100,000+ on-demand. Instant activation, no contracts.",
     images: [{ url: "/images/brand/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "IPTV UK Subscription",
-    description: "10,000+ live channels. Instant activation, no contracts.",
+    description: "35,000+ live channels. Instant activation, no contracts.",
   },
   alternates: {
     canonical: SITE_URL,
@@ -78,8 +81,20 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#050508",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)",  color: "#050508" },
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+  ],
 };
+
+// Anti-flash script — runs before React hydrates to set correct theme
+const themeScript = `
+try {
+  var t = localStorage.getItem('theme');
+  if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', t);
+} catch(e) {}
+`;
 
 export default function RootLayout({
   children,
@@ -97,15 +112,21 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap"
           rel="stylesheet"
         />
+        {/* Anti-flash: set data-theme before first paint */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col bg-surface text-body">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <Header />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <ThemeProvider>
+          <ScrollProgress />
+          <CustomCursor />
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
